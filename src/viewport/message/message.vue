@@ -57,7 +57,7 @@
     @import '../../basic/color.scss';
     .x-message {
         position: fixed;
-        z-index: 20;
+        z-index: 100;
         top: 50px;
         left: 50%;
         transform: translateX(-50%);

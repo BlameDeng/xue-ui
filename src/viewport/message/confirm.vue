@@ -60,7 +60,7 @@
         width: 100%;
         height: 100%;
         position: fixed;
-        z-index: 20;
+        z-index: 100;
         top: 0;
         left: 0;
         background: rgba(0, 0, 0, 0.2);
@@ -70,14 +70,18 @@
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
             width: 400px;
-            height: 140px;
+            height: 150px;
             background: #fff;
-            padding: 20px;
+            padding: 10px;
             border-radius: 4px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            line-height: 1.8em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
             >.info-title {
-                margin-bottom: 15px;
-                font-size: 16px;
+                font-size: 15px;
+                font-weight: 600;
                 color: $title;
             }
             >.info-message {
@@ -94,7 +98,6 @@
                 }
             }
             >.button-wrapper {
-                margin-top: 15px;
                 text-align: end;
             }
         }

@@ -3,7 +3,7 @@
         <div class="selected" @click="showOptions">
             <p class="value">{{addr}}</p>
             <x-icon name="next" class="x-icon" :class="{active:optionsVisible}" v-show="!selected.length"></x-icon>
-            <x-icon name="close" class="x-icon close" v-show="selected.length" @click="clearSelected"></x-icon>
+            <x-icon name="close" class="x-icon close" v-show="selected.length" @click.stop="clearSelected"></x-icon>
         </div>
         <div class="cascader-options" v-show="optionsVisible">
             <x-cascader-item :source="source" :selected="selected" @update:selected="onUpdate($event)"></x-cascader-item>
@@ -45,6 +45,7 @@
             },
             clearSelected() {
                 this.$emit('update:selected', []);
+                this.closeOptions();
             },
             closeOptions() {
                 this.optionsVisible = false;
@@ -71,7 +72,7 @@
     };
 </script>
 <style scoped lang="scss">
-     @import '../../basic/color.scss';
+    @import '../../basic/color.scss';
     .x-cascader {
         font-size: 14px;
         box-shadow: 1px 0 2px rgba(0, 0, 0, 0.3);
@@ -88,7 +89,7 @@
             >.value {
                 height: 30px;
                 padding: 5px;
-                border: 1px solid $border;
+                border: .5px solid $border;
                 border-radius: 4px;
                 font-size: 14px;
             }
