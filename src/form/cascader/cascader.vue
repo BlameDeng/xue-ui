@@ -75,7 +75,7 @@
     @import '../../basic/color.scss';
     .x-cascader {
         font-size: 14px;
-        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
         display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
@@ -125,7 +125,7 @@
             background: #fff;
             border: 1px solid $border;
             border-radius: 4px;
-            box-shadow: 1px 0 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
         }
     }
 </style>

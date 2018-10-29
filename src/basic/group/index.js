@@ -1,5 +1,5 @@
-import Group from './group.vue'
+import ButtonGroup from './button-group.vue'
 
-Group.install = Vue => Vue.component(Group.name, Group)
+ButtonGroup.install = Vue => Vue.component(ButtonGroup.name, ButtonGroup)
 
-export default Group
+export default ButtonGroup

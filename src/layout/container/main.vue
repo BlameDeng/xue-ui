@@ -1,15 +1,15 @@
 <template>
-    <div class="x-content">
+    <div class="x-main">
         <slot></slot>
     </div>
 </template>
 <script>
     export default {
-        name: 'xContent'
+        name: 'xMain'
     }
 </script>
 <style scoped lang="scss">
-    .x-content {
+    .x-main {
         flex-grow: 1;
     }
 </style>

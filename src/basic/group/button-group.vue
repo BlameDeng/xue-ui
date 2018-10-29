@@ -1,11 +1,11 @@
 <template>
-    <div class="x-group">
+    <div class="x-button-group">
         <slot></slot>
     </div>
 </template>
 <script>
     export default {
-        name: 'xGroup',
+        name: 'xButtonGroup',
         mounted() {
             for (let node of this.$el.children) {
                 let name = node.tagName.toLowerCase();
@@ -18,28 +18,32 @@
 </script>
 <style scoped lang="scss">
     @import '../color.scss';
-    .x-group {
+    .x-button-group {
         display: inline-flex;
         justify-content: center;
         align-items: center;
         >.x-button {
             border-radius: 0;
-            border-left: none;
-            border-right: none;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            &:hover {
+                border-left-color: $lp;
+                border-right-color: $lp;
+            }
             &:first-child {
-                border-left: .5px solid $border;
+                border-left-color: $border;
                 border-top-left-radius: 4px;
                 border-bottom-left-radius: 4px;
                 &:hover {
-                    border-left: .5px solid $lp;
+                    border-left-color: $lp;
                 }
             }
             &:last-child {
-                border-right: .5px solid $border;
+                border-right-color: $border;
                 border-top-right-radius: 4px;
                 border-bottom-right-radius: 4px;
                 &:hover {
-                    border-right: .5px solid $lp;
+                    border-right-color: $lp;
                 }
             }
         }

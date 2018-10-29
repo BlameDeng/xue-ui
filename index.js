@@ -5,11 +5,11 @@ import Switch from './src/form/switch/index.js'
 import Input from './src/form/input/index.js'
 import Textarea from './src/form/textarea/index.js'
 import Grid from './src/layout/grid/index.js'
-import Layout from './src/layout/layout/index.js'
+import Container from './src/layout/container/index.js'
 import Collapse from './src/layout/collapse/index.js'
 import Waterfall from './src/layout/waterfall/index.js'
 import Tabs from './src/navigation/tabs/index.js'
-import Nav from './src/navigation/nav/index.js'
+import Menu from './src/navigation/menu/index.js'
 import Pager from './src/viewport/pager/index.js'
 import Popover from './src/viewport/popover/index.js'
 import Message from './src/viewport/message/index.js'
@@ -24,11 +24,11 @@ const components = [
   Input,
   Textarea,
   Grid,
-  Layout,
+  Container,
   Collapse,
   Waterfall,
   Tabs,
-  Nav,
+  Menu,
   Pager,
   Popover,
   Slides,

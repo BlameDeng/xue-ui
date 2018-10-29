@@ -1,15 +1,15 @@
-import Layout from './layout.vue'
+import Container from './container.vue'
 import Header from './header.vue'
-import Content from './content.vue'
+import Main from './main.vue'
 import Sider from './sider.vue'
 import Footer from './footer.vue'
 
-Layout.install = Vue => {
-  Vue.component(Layout.name, Layout)
+Container.install = Vue => {
+  Vue.component(Container.name, Container)
   Vue.component(Header.name, Header)
-  Vue.component(Content.name, Content)
+  Vue.component(Main.name, Main)
   Vue.component(Sider.name, Sider)
   Vue.component(Footer.name, Footer)
 }
 
-export default Layout
+export default Container

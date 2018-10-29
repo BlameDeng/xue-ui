@@ -1,11 +1,11 @@
 <template>
-    <div class="x-layout" :class="xClass">
+    <div class="x-container" :class="xClass">
         <slot></slot>
     </div>
 </template>
 <script>
     export default {
-        name: 'xLayout',
+        name: 'xContainer',
         data() { return { hasSider: false } },
         computed: {
             xClass() {
@@ -26,7 +26,7 @@
     }
 </script>
 <style scoped lang="scss">
-    .x-layout {
+    .x-container {
         width: 100%;
         min-height: 100%;
         display: flex;
