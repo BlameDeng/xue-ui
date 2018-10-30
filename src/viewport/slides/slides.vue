@@ -110,7 +110,7 @@
                     margin: 0 4px 4px;
                     height: 4px;
                     width: 30px;
-                    background: $sub;
+                    background: $divider;
                     border-radius: 2px;
                     cursor: pointer;
                     &.active {
@@ -122,7 +122,7 @@
                 position: absolute;
                 top: 50%;
                 color: #fff;
-                background: lighten($sub, 10%);
+                background: $bg;
                 display: none;
                 justify-content: center;
                 align-items: center;
@@ -130,7 +130,7 @@
                 border-radius: 50%;
                 cursor: pointer;
                 &:hover {
-                    background: $sub;
+                    background: $divider;
                 }
                 &.prev {
                     left: 0;

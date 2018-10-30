@@ -84,14 +84,15 @@
         white-space: nowrap;
         min-width: 8em;
         font-size: 14px;
-        color: $content;
+        color: $main;
         &:hover {
-            background: $ha;
+            background: $habg;
+            color: $hover;
         }
         &.active {
             overflow: hidden;
-            color: $lp;
-            background: $ha;
+            color: $p;
+            background: $habg;
         }
     }
     .x-sub-menu .x-menu-item {
@@ -116,10 +117,9 @@
         padding-left: 25px;
     }
     .x-sub-menu.vertical .x-sub-menu.vertical .x-menu-item {
-        color: $sub;
         padding-left: 35px;
         &.active {
-            color: $lp;
+            color: $p;
         }
     }
 </style>

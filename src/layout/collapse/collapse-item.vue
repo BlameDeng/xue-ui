@@ -49,9 +49,9 @@
             }
         }
         >.title {
-            border: .5px solid $border;
+            border: 1px solid $border;
             border-bottom: none;
-            margin: -.5px -.5px 0;
+            margin: -1px -1px 0;
             padding: 4px 0 4px 8px;
             background: $bg;
             color: $title;
@@ -76,7 +76,7 @@
             font-size: 14px;
             padding: 4px 0 4px 8px;
             text-indent: 2em;
-            color: $content;
+            color: $main;
         }
     }
 </style>

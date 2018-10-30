@@ -3,7 +3,7 @@
         <div class="x-message" :class="{[`${options.type}`]:true}" v-show="visible">
             <x-icon :name="options.type" class="x-icon"></x-icon>
             {{options.message}}
-            <x-icon name="close" class="x-icon close" v-if="options.closable" @click="closeMessage" style="width:12px;height:12px;"></x-icon>
+            <x-icon name="close" class="x-icon close" v-if="options.showClose" @click="closeMessage" style="width:12px;height:12px;"></x-icon>
         </div>
     </transition>
 </template>
@@ -20,7 +20,7 @@
                         type: 'success',
                         message: '',
                         duration: 2000,
-                        closable: false
+                        showClose: false
                     }
                 }
             }
@@ -45,7 +45,7 @@
             }
         },
         mounted() {
-            !this.options.closable && this.autoClose();
+            !this.options.showClose && this.autoClose();
         },
         beforeDestroy() {
             this.timer ? clearTimeout(this.timer) : '';
@@ -71,13 +71,15 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         >.x-icon {
             margin-right: .4em;
+            width: 25px;
+            height: 25px;
             &.close {
                 cursor: pointer;
                 margin-left: 3em;
                 margin-right: -.8em;
-                color: lighten($sub, 20%);
+                color: $sub;
                 &:hover {
-                    color: $sub;
+                    color: $hover;
                 }
             }
         }
@@ -88,7 +90,7 @@
             color: $error;
         }
         &.info {
-            color: $info;
+            color:$link;
         }
         &.warning {
             color: $warning;

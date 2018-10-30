@@ -67,7 +67,7 @@
                     }
                     &.active {
                         background: $bg;
-                        color: $dp;
+                        color: $p;
                     }
                     &:hover {
                         background: $bg;

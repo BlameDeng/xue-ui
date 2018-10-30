@@ -31,12 +31,12 @@
             height: 100%;
             resize: none;
             padding: .5em .5em;
-            border: .5px solid $border;
+            border: 1px solid $border;
             border-radius: 4px;
-            color: $content;
+            color: $main;
             font-size: 14px;
             &:hover {
-                border-color: $lp;
+                border-color: $p;
             }
             &:focus {
                 outline: none;

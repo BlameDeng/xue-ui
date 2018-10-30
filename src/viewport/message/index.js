@@ -7,7 +7,7 @@ const Message = {
     Vue.prototype.$success = function({
       message,
       duration = 2000,
-      closable = false
+      showClose = false
     }) {
       const Constructor = Vue.extend(messageComponent)
       const div = document.createElement('div')
@@ -18,7 +18,7 @@ const Message = {
             type: 'success',
             message,
             duration,
-            closable
+            showClose
           }
         }
       }).$mount(div)
@@ -28,7 +28,7 @@ const Message = {
     Vue.prototype.$info = function({
       message,
       duration = 2000,
-      closable = false
+      showClose = false
     }) {
       const Constructor = Vue.extend(messageComponent)
       const div = document.createElement('div')
@@ -39,7 +39,7 @@ const Message = {
             type: 'info',
             message,
             duration,
-            closable
+            showClose
           }
         }
       }).$mount(div)
@@ -49,7 +49,7 @@ const Message = {
     Vue.prototype.$warning = function({
       message,
       duration = 2000,
-      closable = false
+      showClose = false
     }) {
       const Constructor = Vue.extend(messageComponent)
       const div = document.createElement('div')
@@ -60,7 +60,7 @@ const Message = {
             type: 'warning',
             message,
             duration,
-            closable
+            showClose
           }
         }
       }).$mount(div)
@@ -70,7 +70,7 @@ const Message = {
     Vue.prototype.$error = function({
       message,
       duration = 2000,
-      closable = false
+      showClose = false
     }) {
       const Constructor = Vue.extend(messageComponent)
       const div = document.createElement('div')
@@ -81,7 +81,7 @@ const Message = {
             type: 'error',
             message,
             duration,
-            closable
+            showClose
           }
         }
       }).$mount(div)
@@ -100,7 +100,7 @@ const Message = {
     }
   },
 
-  success({ message, duration = 2000, closable = false }) {
+  success({ message, duration = 2000, showClose = false }) {
     const Constructor = Vue.extend(messageComponent)
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -110,14 +110,14 @@ const Message = {
           type: 'success',
           message,
           duration,
-          closable
+          showClose
         }
       }
     }).$mount(div)
     vm.visible = true
   },
 
-  info({ message, duration = 2000, closable = false }) {
+  info({ message, duration = 2000, showClose = false }) {
     const Constructor = Vue.extend(messageComponent)
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -127,14 +127,14 @@ const Message = {
           type: 'info',
           message,
           duration,
-          closable
+          showClose
         }
       }
     }).$mount(div)
     vm.visible = true
   },
 
-  warning({ message, duration = 2000, closable = false }) {
+  warning({ message, duration = 2000, showClose = false }) {
     const Constructor = Vue.extend(messageComponent)
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -144,14 +144,14 @@ const Message = {
           type: 'warning',
           message,
           duration,
-          closable
+          showClose
         }
       }
     }).$mount(div)
     vm.visible = true
   },
 
-  error({ message, duration = 2000, closable = false }) {
+  error({ message, duration = 2000, showClose = false }) {
     const Constructor = Vue.extend(messageComponent)
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -161,7 +161,7 @@ const Message = {
           type: 'error',
           message,
           duration,
-          closable
+          showClose
         }
       }
     }).$mount(div)

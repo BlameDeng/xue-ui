@@ -2,10 +2,10 @@
     <div class="x-input-wrapper" :class="{error:error}">
         <input :value="value" :disabled="disabled" :readOnly="readOnly" @change="$emit('change',$event)" @input="$emit('input',$event.target.value)" @focus="$emit('focus',$event)" @blur="$emit('blur',$event)" :placeholder="placeholder" ref="myXInput">
         <template v-if="error">
-            <p class="error-info">
+            <span class="error-info">
                 <x-icon name="error" class="x-icon"></x-icon>
                 <span>{{error}}</span>
-            </p>
+            </span>
         </template>
     </div>
 </template>
@@ -41,11 +41,11 @@
             width: 100%;
             padding: 0.5em 0.5em;
             font-size: inherit;
-            border: .5px solid $border;
+            border: 1px solid $border;
             border-radius: 4px;
             background: none;
             &:hover {
-                border-color: $lp;
+                border-color: $p;
             }
             &:focus {
                 outline: none;
@@ -76,6 +76,9 @@
                 align-items: center;
                 color: $error;
                 width: 100%;
+                >.x-icon{
+                    margin: 0 2px;
+                }
             }
         }
     }

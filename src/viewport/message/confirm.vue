@@ -4,7 +4,8 @@
             <div class="confirm-info">
                 <div class="info-title">{{title}}</div>
                 <div class="info-message">
-                    <x-icon name="warning" class="x-icon"></x-icon>{{message}}
+                    <x-icon name="warning" class="x-icon"></x-icon>
+                    <p class="text">{{message}}</p>
                 </div>
                 <div class="button-wrapper">
                     <x-button @click="onClick('cancle')">{{cancleText}}</x-button>
@@ -80,7 +81,7 @@
             flex-direction: column;
             justify-content: space-evenly;
             >.info-title {
-                font-size: 15px;
+                font-size: 16px;
                 font-weight: 600;
                 color: $title;
             }
@@ -88,13 +89,14 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
-                color: $content;
+                color: $main;
                 padding-left: 10px;
                 font-size: 14px;
+                height: 50px;
                 >.x-icon {
                     color: $warning;
-                    font-size: 16px;
                     margin-right: 4px;
+                    width: 30px; height: 30px;
                 }
             }
             >.button-wrapper {

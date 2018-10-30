@@ -81,7 +81,8 @@
         align-items: flex-start;
         position: relative;
         border-radius: 4px;
-        color: $content;
+        color: $main;
+        padding:0 10px;
         >.selected {
             cursor: pointer;
             position: relative;
@@ -89,7 +90,7 @@
             >.value {
                 height: 30px;
                 padding: 5px;
-                border: .5px solid $border;
+                border: 1px solid $border;
                 border-radius: 4px;
                 font-size: 14px;
             }
@@ -111,7 +112,7 @@
                     width: 12px;
                     height: 12px;
                     &:hover {
-                        background: $content;
+                        background: $main;
                         color: #fff;
                     }
                 }

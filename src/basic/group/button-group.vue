@@ -27,15 +27,15 @@
             border-left-color: transparent;
             border-right-color: transparent;
             &:hover {
-                border-left-color: $lp;
-                border-right-color: $lp;
+                border-left-color: $p;
+                border-right-color: $p;
             }
             &:first-child {
                 border-left-color: $border;
                 border-top-left-radius: 4px;
                 border-bottom-left-radius: 4px;
                 &:hover {
-                    border-left-color: $lp;
+                    border-left-color: $p;
                 }
             }
             &:last-child {
@@ -43,7 +43,7 @@
                 border-top-right-radius: 4px;
                 border-bottom-right-radius: 4px;
                 &:hover {
-                    border-right-color: $lp;
+                    border-right-color: $p;
                 }
             }
         }

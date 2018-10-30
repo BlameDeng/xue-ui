@@ -58,7 +58,7 @@
         display: flex;
         cursor: pointer;
         font-size: 14px;
-        color: $content;
+        color: $main;
         user-select: none;
         justify-content: flex-start;
         align-items: center;

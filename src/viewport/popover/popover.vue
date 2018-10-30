@@ -124,7 +124,7 @@
         }
     }
     .content-wrapper {
-        border: .5px solid $border;
+        border: 1px solid $border;
         border-radius: 4px;
         background: #fff;
         padding: .5em 1em;

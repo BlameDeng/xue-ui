@@ -1,6 +1,6 @@
 <template>
     <span class="x-icon-wrapper">
-        <svg class="x-icon" aria-hidden="true" @click="$emit('click',$event)">
+        <svg class="x-icon" aria-hidden="true" @click="$emit('click',$event)" ref="svg">
             <use v-bind:xlink:href="`#icon-${name}`"></use>
         </svg>
     </span>

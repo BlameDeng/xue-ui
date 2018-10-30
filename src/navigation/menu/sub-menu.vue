@@ -107,7 +107,7 @@
 <style scoped lang="scss">
     @import '../../basic/color.scss';
     .x-sub-menu {
-        color: $content;
+        color: $main;
         font-size: 14px;
         position: relative;
         width: 100%;
@@ -121,7 +121,7 @@
             justify-content: flex-start;
             align-items: center;
             &:hover {
-                background: $ha;
+                background: $habg;
             }
             >.x-icon {
                 margin-left: auto;
@@ -148,7 +148,7 @@
         }
     }
     .x-sub-menu.vertical {
-        color: $content;
+        color: $main;
         font-size: 14px;
         >.title {
             padding: 5px 15px;
@@ -160,7 +160,7 @@
             justify-content: flex-start;
             align-items: center;
             &:hover {
-                background: $ha;
+                background: $habg;
             }
             >.x-icon {
                 margin-left: auto;

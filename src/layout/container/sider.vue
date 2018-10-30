@@ -27,7 +27,7 @@
             top: 4px;
             right: 4px;
             cursor: pointer;
-            color: $content;
+            color: $main;
             width: 12px;
             height: 12px;
             &:hover {
