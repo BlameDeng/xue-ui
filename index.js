@@ -48,5 +48,5 @@ const install = (Vue, options) => {
     Vue.use(Message)
 }
 
-export { Message }
-export default { install }
+export { Message, Loading }
+export default { install, Loading, Message }
