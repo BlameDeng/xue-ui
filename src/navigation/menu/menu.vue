@@ -28,7 +28,7 @@
                 this.eventBus.$emit('vertical-prop', this.vertical)
                 if (this.selectedIndex) {
                     this.currentIndex = this.selectedIndex
-                    this.refresh({ index: this.selectedIndex })
+                    this.updateMenu({ index: this.selectedIndex })
                 }
             })
         },
@@ -42,8 +42,8 @@
                 this.currentPath = data.path
                 this.$emit('path-change', this.currentPath)
             },
-            refresh(data) {
-                this.eventBus.$emit('refresh', data)
+            updateMenu(data) {
+                this.eventBus.$emit('update-menu', data)
             }
         },
         beforeDestroy() {

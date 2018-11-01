@@ -55,7 +55,7 @@
             //传递vertical 值为Boolean
             this.eventBus.$on('vertical-prop', this.listenVertical)
             //更新展开状态，值为对象{index}或{path}
-            this.eventBus.$on('refresh', this.listenRefresh)
+            this.eventBus.$on('update-menu', this.listenRefresh)
         },
         methods: {
             onClick() {
@@ -100,7 +100,7 @@
             this.eventBus.$off('click-item', this.listenItem)
             this.eventBus.$off('click-sub', this.listenSub)
             this.eventBus.$off('vertical-prop', this.listenVertical)
-            this.eventBus.$off('refresh', this.listenRefresh)
+            this.eventBus.$off('update-menu', this.listenRefresh)
         }
     }
 </script>

@@ -28,7 +28,7 @@
         mounted() {
             this.eventBus.$on('click-item', this.listenItem)
             this.eventBus.$on('vertical-prop', this.listenVertical)
-            this.eventBus.$on('refresh', this.listenRefresh)
+            this.eventBus.$on('update-menu', this.listenRefresh)
             this.$nextTick(() => {
                 this.getNames(this)
             })
@@ -65,14 +65,14 @@
                     this.active = this.index === data.index
                     //监听到path，如果是自己则抛出index
                 } else if (data.path === this.path) {
-                    this.eventBus.$emit('refresh', { index: this.index })
+                    this.eventBus.$emit('update-menu', { index: this.index })
                 }
             }
         },
         beforeDestroy() {
             this.eventBus.$off('click-item', this.listenItem)
             this.eventBus.$off('vertical-prop', this.listenVertical)
-            this.eventBus.$off('refresh', this.listenRefresh)
+            this.eventBus.$off('update-menu', this.listenRefresh)
         }
     }
 </script>

@@ -1,6 +1,7 @@
 <template>
-    <button type="button" class="x-button" :class="{[`icon-${position}`]:true,wave,primary}" @click="onClick">
-        <x-icon v-if="icon" :name="icon" class="x-icon"></x-icon>
+    <button type="button" class="x-button" :class="{[`icon-${position}`]:true,wave,primary,normal}" @click="onClick">
+        <x-icon v-if="icon&&!slefLoading" :name="icon" class="x-icon"></x-icon>
+        <x-icon name="loading" v-show="loading&&slefLoading" class="x-icon loading"> </x-icon>
         <span class="slot-content">
             <slot></slot>
         </span>
@@ -12,7 +13,7 @@
         name: 'xButton',
         components: { xIcon },
         data() {
-            return { dotVisible: false, wave: false, timerId: null }
+            return { dotVisible: false, wave: false, slefLoading: false }
         },
         props: {
             icon: { type: String },
@@ -21,17 +22,25 @@
                 default: 'left',
                 validator(value) { return value === 'right' || value === 'left' }
             },
-            primary: { type: Boolean, default: false }
+            primary: { type: Boolean, default: false },
+            normal: { type: Boolean, default: false },
+            loading: { type: Boolean, default: false }
         },
         methods: {
             onClick(e) {
-                this.$emit('click', e);
+                this.$emit('click', e)
+                if (this.loading) {
+                    this.slefLoading = !this.slefLoading
+                }
                 this.wave = true
                 this.$el.addEventListener('animationend', this.listenAnimation)
             },
             listenAnimation() {
                 this.wave = false
                 this.$el.removeEventListener('animationend', this.listenAnimation)
+            },
+            stopLoading() {
+                this.slefLoading = false
             }
         },
         beforeDestroy() {
@@ -49,7 +58,7 @@
         padding: 0 12px;
         color: $main;
         border-radius: 4px;
-        background: $bg;
+        background: #fff;
         border: 1px solid;
         border-color: $border;
         display: inline-flex;
@@ -60,6 +69,9 @@
         >.x-icon {
             width: 1em;
             height: 1em;
+            &.loading {
+                animation: loading-spin 1.3s linear infinite;
+            }
         }
         &:hover {
             color: $p;
@@ -105,9 +117,12 @@
                 border-radius: inherit;
                 border: 0 solid $p;
                 opacity: .4;
-                animation: button-scale .5s linear forwards;
+                animation: after-scale .5s linear forwards;
                 flex-shrink: 0;
             }
+        }
+        &.normal {
+            background: $bg;
         }
         &.primary {
             background: $p;
@@ -115,7 +130,7 @@
             border-color: $p;
         }
     }
-    @keyframes button-scale {
+    @keyframes after-scale {
         to {
             top: -6px;
             left: -6px;
@@ -123,6 +138,14 @@
             right: -6px;
             border-width: 6px;
             opacity: 0;
+        }
+    }
+    @keyframes loading-spin {
+        0% {
+            transform: rotateZ(0);
+        }
+        100% {
+            transform: rotateZ(360deg);
         }
     }
 </style>

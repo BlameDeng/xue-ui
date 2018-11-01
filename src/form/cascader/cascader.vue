@@ -1,7 +1,7 @@
 <template>
     <div class="x-cascader">
         <div class="selected" @click="showOptions">
-            <p class="value">{{addr}}</p>
+            <div class="value">{{addr}}</div>
             <x-icon name="next" class="x-icon" :class="{active:optionsVisible}" v-show="!selected.length"></x-icon>
             <x-icon name="close" class="x-icon close" v-show="selected.length" @click.stop="clearSelected"></x-icon>
         </div>
@@ -75,14 +75,13 @@
     @import '../../basic/color.scss';
     .x-cascader {
         font-size: 14px;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
         display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
         position: relative;
         border-radius: 4px;
         color: $main;
-        padding:0 10px;
+        padding: 0 10px;
         >.selected {
             cursor: pointer;
             position: relative;
@@ -112,8 +111,7 @@
                     width: 12px;
                     height: 12px;
                     &:hover {
-                        background: $main;
-                        color: #fff;
+                        color: $hover;
                     }
                 }
             }

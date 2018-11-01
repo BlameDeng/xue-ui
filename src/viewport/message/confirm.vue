@@ -9,7 +9,7 @@
                 </div>
                 <div class="button-wrapper">
                     <x-button @click="onClick('cancle')">{{cancleText}}</x-button>
-                    <x-button wave @click="onClick('confirm')">{{confirmText}}</x-button>
+                    <x-button @click="onClick('confirm')" primary="">{{confirmText}}</x-button>
                 </div>
             </div>
         </div>

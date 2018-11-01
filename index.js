@@ -20,32 +20,33 @@ import Spread from './src/others/spread/index.js'
 import Spin from './src/others/spin/index.js'
 
 const components = [
-    Icon,
-    Button,
-    Group,
-    Switch,
-    Input,
-    Textarea,
-    Cascader,
-    Grid,
-    Container,
-    Collapse,
-    Waterfall,
-    Tabs,
-    Menu,
-    Pager,
-    Loading,
-    Popover,
-    Slides,
-    Spread,
-    Spin
+  Icon,
+  Button,
+  Group,
+  Switch,
+  Input,
+  Textarea,
+  Cascader,
+  Grid,
+  Container,
+  Collapse,
+  Waterfall,
+  Tabs,
+  Menu,
+  Pager,
+  Loading,
+  Popover,
+  Slides,
+  Spread,
+  Spin
 ]
 
 const install = (Vue, options) => {
-    components.forEach(component => {
-        component.install(Vue)
-    })
-    Vue.use(Message)
+  components.forEach(component => {
+    component.install(Vue)
+  })
+  Vue.use(Message)
+  Vue.use(Loading)
 }
 
 export { Message, Loading }
