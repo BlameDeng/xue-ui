@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/license-MIT-000000.svg)
 
-[官方文档](http://xue-ui.com.cn)
+[官方文档](https://xue-ui.com.cn)
 
 ## 写在前面
 
