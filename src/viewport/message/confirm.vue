@@ -75,7 +75,7 @@
             background: #fff;
             padding: 10px;
             border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: $shadow;
             line-height: 1.8em;
             display: flex;
             flex-direction: column;

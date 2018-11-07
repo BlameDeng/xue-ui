@@ -41,7 +41,7 @@
             width: 100%;
             padding: 0.5em 0.5em;
             font-size: inherit;
-            border: 1px solid $border;
+            border: $borderbase;
             border-radius: 4px;
             background: none;
             &:hover {

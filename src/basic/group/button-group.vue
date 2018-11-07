@@ -24,26 +24,53 @@
         align-items: center;
         >.x-button {
             border-radius: 0;
-            border-left-color: transparent;
-            border-right-color: transparent;
+            border-left: none;
+            border-right: none;
+            position: relative;
+            &::before {
+                content: '';
+                display: none;
+                position: absolute;
+                top: -1px;
+                left: 0;
+                right: 0;
+                bottom: -1px;
+                border-left: 1px solid $p;
+                border-right: 1px solid $p;
+                border-radius: inherit;
+                pointer-events: none;
+                z-index: 1;
+            }
             &:hover {
-                border-left-color: $p;
-                border-right-color: $p;
+                &::before {
+                    display: block;
+                }
+            }
+            &:focus {
+                &::before {
+                    display: block;
+                }
             }
             &:first-child {
-                border-left-color: $border;
+                border-left: $borderbase;
                 border-top-left-radius: 4px;
                 border-bottom-left-radius: 4px;
                 &:hover {
                     border-left-color: $p;
                 }
+                &::before {
+                    left: -1px;
+                }
             }
             &:last-child {
-                border-right-color: $border;
+                border-right: $borderbase;
                 border-top-right-radius: 4px;
                 border-bottom-right-radius: 4px;
                 &:hover {
                     border-right-color: $p;
+                }
+                &::before {
+                    right: -1px;
                 }
             }
         }

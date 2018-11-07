@@ -135,6 +135,9 @@
                     height: 70%;
                     background: #fff;
                     border-radius: 50%;
+                    &.full-screen {
+                        background: #f2f2f2;
+                    }
                 }
             }
             >.tips {

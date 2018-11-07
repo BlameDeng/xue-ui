@@ -31,7 +31,7 @@
             height: 100%;
             resize: none;
             padding: .5em .5em;
-            border: 1px solid $border;
+            border: $borderbase;
             border-radius: 4px;
             color: $main;
             font-size: 14px;

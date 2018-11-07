@@ -37,7 +37,7 @@
 <style scoped lang="scss">
     @import '../../basic/color.scss';
     .x-collapse {
-        border: 1px solid $border;
+        border: $borderbase;
         border-radius: 4px;
         cursor: pointer;
     }

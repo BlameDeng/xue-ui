@@ -49,7 +49,7 @@
             }
         }
         >.title {
-            border: 1px solid $border;
+            border: $borderbase;
             border-bottom: none;
             margin: -1px -1px 0;
             padding: 4px 0 4px 8px;

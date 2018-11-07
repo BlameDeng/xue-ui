@@ -89,7 +89,7 @@
             >.value {
                 height: 30px;
                 padding: 5px;
-                border: 1px solid $border;
+                border: $borderbase;
                 border-radius: 4px;
                 font-size: 14px;
             }
@@ -122,9 +122,9 @@
             top: 100%;
             margin-top: 10px;
             background: #fff;
-            border: 1px solid $border;
+            border: $borderbase;
             border-radius: 4px;
-            box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
         }
     }
 </style>

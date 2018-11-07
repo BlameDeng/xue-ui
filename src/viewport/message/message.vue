@@ -68,7 +68,7 @@
         background: #fff;
         padding: .5em 1.2em;
         border-radius: 4px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: $shadow;
         >.x-icon {
             margin-right: .4em;
             width: 25px;
