@@ -1,17 +1,10 @@
 <template>
-    <div class="x-slides" @mouseenter="mouseenter" @mouseleave="mouseleave" @touchstart="touchstart" @touchend="touchend" mode="in-out">
-        <div class="x-slides-window">
+    <div class="x-slides" @mouseenter="enter" @mouseleave="leave">
+        <div class="x-view" ref="view" :class="{transition}">
             <slot></slot>
-            <div class="slides-button">
-                <span class="button" v-if="len" v-for="(n,index) in len" :key="n" @click="current=index" :class="{active:current===index}"></span>
-            </div>
-            <span class="icon-wrapper prev" @click="setCurrent(-1)">
-                <x-icon name="right" class="x-icon"></x-icon>
-            </span>
-            <span class="icon-wrapper next" @click="setCurrent(1)">
-                <x-icon name="right" class="x-icon"></x-icon>
-            </span>
         </div>
+        <x-icon name="left" class="icon prev" @click="changeCurrent(-1)"></x-icon>
+        <x-icon name="right" class="icon next" @click="changeCurrent(1)"></x-icon>
     </div>
 </template>
 <script>
@@ -21,130 +14,138 @@
         components: { xIcon },
         props: {
             duration: { type: Number, default: 3000 },
-            transitionTime: { type: Number, default: 500 },
             autoPlay: { type: Boolean, default: true }
         },
         data() {
             return {
-                current: 0,
-                len: 0,
-                timer: null,
-                startTouch: null
+                current: 1,
+                transition: true,
+                length: 0,
+                timerId: null,
+                changing: false
+            }
+        },
+        watch: {
+            current(newVal, oldVal) {
+                if (!this.transition) {
+                    this.transition = true
+                }
+                let view = this.$refs.view
+                //最后一张到第一张
+                if (newVal === 1 && oldVal === this.length) {
+                    view.style.transform = `translateX(${-100 * (this.length + 1)}%)`
+                    view.addEventListener('transitionend', this.reset)
+                    this.changing = true
+                    return
+                }
+                //第一张到最后一张
+                if (newVal === this.length && oldVal === 1) {
+                    view.style.transform = `translate(0)`
+                    view.addEventListener('transitionend', this.reset)
+                    this.changing = true
+                    return
+                }
+                view.style.transform = `translateX(${-100 * newVal}%)`
             }
         },
         mounted() {
             this.$nextTick(() => {
-                this.len = this.$children.length - 2;
-                this.startAutoPlay();
+                this.cloneDom()
+                this.autoPlay && this.startAutoPlay()
             })
         },
-        methods: {
-            startAutoPlay() {
-                if (!this.autoPlay) { return }
-                if (this.timer) { return }
-                let run = () => {
-                    this.setCurrent(1);
-                    this.timer = setTimeout(run, this.duration);
-                }
-                this.timer = setTimeout(run, this.duration);
-            },
-            mouseenter() {
-                if (this.timer) {
-                    window.clearTimeout(this.timer);
-                }
-                this.timer = null;
-            },
-            mouseleave() {
-                this.startAutoPlay();
-            },
-            setCurrent(num) {
-                this.current += num;
-                if (this.current >= this.len) {
-                    this.current = 0;
-                }
-                if (this.current <= -1) {
-                    this.current = this.len - 1;
-                }
-                this.$emit('current-change', this.current);
-            },
-            touchstart(e) {
-                this.startTouch = e.touches[0];
-            },
-            touchend(e) {
-                let { clientX } = e.changedTouches[0];
-                let space = clientX - this.startTouch.clientX;
-                if (Math.abs(space) <= 80) {
-                    return
-                } else {
-                    space > 0 ? this.setCurrent(-1) : this.setCurrent(1);
-                }
-            }
+        beforedestroy() {
+            this.changing = false
+            this.$refs.view.removeEventListener('transitionend', this.reset)
         },
-        beforeDestroy() {
-            if (this.timer) {
-                window.clearTimeout(this.timer);
+        methods: {
+            cloneDom() {
+                let nodes = this.$slots.default.filter(node => node.elm.nodeType !== 3)   
+                nodes.forEach(node => {
+                    node.elm.style['flex-shrink'] = 0
+                })
+                this.length=nodes.length
+                const first = nodes[0].elm.cloneNode(true)
+                const last = nodes[nodes.length - 1].elm.cloneNode(true)
+                this.$refs.view.prepend(last)
+                this.$refs.view.append(first)
+            },
+            reset() {
+                let view = this.$refs.view
+                this.transition = false
+                if (this.current === 1) {
+                    view.style.transform = `translateX(-100%)`
+                } else {
+                    view.style.transform = `translateX(${-100 * this.length}%)`
+                }
+                this.changing = false
+                view.removeEventListener('transitionend', this.reset)
+            },
+            startAutoPlay() {
+                let play = () => {
+                    this.changeCurrent(1)
+                    this.timerId = setTimeout(play, this.duration)
+                }
+                this.timerId = setTimeout(play, this.duration)
+            },
+            changeCurrent(n) {
+                //防止在切换图片时改变current导致播放混乱
+                if (this.changing) { return }
+                this.current += n
+                if (this.current > this.length) {
+                    this.current = 1
+                } else if (this.current < 1) {
+                    this.current = this.length
+                }
+            },
+            stopPlay() {
+                window.clearTimeout(this.timerId)
+                this.timerId = null
+            },
+            enter() {
+                this.timerId && this.stopPlay()
+            },
+            leave() {
+                this.autoPlay && !this.timerId && this.startAutoPlay()
             }
-            this.timer = null;
         }
     }
 </script>
 <style scoped lang="scss">
-    @import '../../basic/color.scss';
     .x-slides {
         width: 100%;
-        height: 100%;
-        >.x-slides-window {
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            >.slides-button {
-                position: absolute;
+        overflow: hidden;
+        position: relative;
+        >.icon {
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            position: absolute;
+            z-index: 10;
+            cursor: pointer;
+            opacity: 0;
+            &.prev {
                 left: 0;
-                bottom: 0;
-                width: 100%;
-                text-align: center;
-                >.button {
-                    display: inline-block;
-                    margin: 0 4px 4px;
-                    height: 4px;
-                    width: 30px;
-                    background: $divider;
-                    border-radius: 2px;
-                    cursor: pointer;
-                    &.active {
-                        background: #fff;
-                    }
-                }
-            }
-            >.icon-wrapper {
-                position: absolute;
                 top: 50%;
-                color: #fff;
-                background: $bg;
-                display: none;
-                justify-content: center;
-                align-items: center;
-                padding: 4px;
-                border-radius: 50%;
-                cursor: pointer;
-                &:hover {
-                    background: $divider;
-                }
-                &.prev {
-                    left: 0;
-                    transform: translateY(-50%) rotateZ(180deg);
-                }
-                &.next {
-                    right: 0;
-                    transform: translateY(-50%);
-                }
+                transform: translateY(-50%);
             }
-            &:hover {
-                >.icon-wrapper {
-                    display: inline-flex;
-                }
+            &.next {
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        &:hover {
+            >.icon {
+                opacity: .85;
+            }
+        }
+        >.x-view {
+            display: flex;
+            width: 100%;
+            transform: translateX(-100%);
+            &.transition {
+                transition: transform 500ms linear;
             }
         }
     }
