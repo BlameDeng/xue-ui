@@ -2,11 +2,9 @@
 
 ![](https://img.shields.io/badge/license-MIT-000000.svg)
 
+> 本组件库仅供学习交流，请勿在生产环境中使用
+
 [官方文档](https://xue-ui.com.cn)
-
-## 写在前面
-
-Xue-ui 是我在饥人谷学习前端过程中制作的一个 UI 组件库。
 
 ## 安装
 
