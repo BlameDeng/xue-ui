@@ -1,5 +1,9 @@
 <template>
-    <div class="x-input" :class="{error,disabled}">
+    <div class="x-textarea-wrapper" v-if="type==='textarea'">
+        <textarea :style="xStyle" :value="value" @change="$emit('change',$event)" @input="onInput" @focus="$emit('focus',$event)" @blur="$emit('blur',$event)" ref="myTextarea">
+        </textarea>
+    </div>
+    <div class="x-input" :class="{error,disabled}" v-else>
         <x-icon v-if="icon" :name="icon" class="icon" :class="{focus:focus||value}"></x-icon>
         <x-icon name="error" class="error"></x-icon>
         <input :type="type" @focus="onFocus" @blur="onBlur" :value="value" @input="onInput" @change="onChange" :class="{['no-icon']:!icon}" ref="input">
@@ -18,9 +22,19 @@
             type: { type: String, default: 'text' },
             disabled: { type: Boolean, default: false },
             error: { type: Boolean, default: false },
+            resize: { type: Boolean, default: false },
         },
         data() {
             return { focus: false }
+        },
+        computed: {
+            xStyle() {
+                if (this.resize) {
+                    return { resize: 'auto' }
+                } else {
+                    return { resize: 'none' }
+                }
+            }
         },
         methods: {
             onFocus(e) {
@@ -132,6 +146,26 @@
                 &:hover {
                     border-color: rgba(0, 0, 0, .15);
                 }
+            }
+        }
+    }
+    .x-textarea-wrapper {
+        width: 100%;
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            padding: .5em .5em;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 4px;
+            color: rgba(0, 0, 0, .65);
+            font-size: 14px;
+            &:hover {
+                border-color: $p;
+            }
+            &:focus {
+                outline: none;
+                box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.25);
             }
         }
     }
