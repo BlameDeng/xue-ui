@@ -19,18 +19,20 @@ $ yarn add xue-ui
 
 ## 使用
 
-如果使用了 npm / yarn 安装，一般在 main.js 中如下配置
+如果使用了 npm / yarn 安装，一般在 main.js 中如下配置：
 
 ```javascript
 import Vue from 'vue'
 import App from 'components/app.vue'
 import Xue from 'xue-ui'
+import 'xue-ui/lib/xue-ui.css'
 Vue.use(Xue)
 new Vue({
   el: '#app',
   render: h => h(App)
 })
 ```
+以上代码便完成了 Xue-ui 的引入。需要注意的是，样式文件需要单独引入。
 
 ## 特别提醒
 
