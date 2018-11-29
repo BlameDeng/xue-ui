@@ -10,7 +10,7 @@
                         </div>
                     </th>
                     <th v-for="(col,index) in columns" :key="index">
-                        <span :class="{sort}">{{col.title}}</span>
+                        <!-- <span :class="{sort}">{{col.title}}</span> -->
                     </th>
                 </tr>
             </thead>

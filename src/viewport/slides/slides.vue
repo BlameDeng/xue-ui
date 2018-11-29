@@ -54,7 +54,7 @@
                 this.autoPlay && this.startAutoPlay()
             })
         },
-        beforedestroy() {
+        beforeDestroy() {
             this.changing = false
             this.$refs.view.removeEventListener('transitionend', this.reset)
         },

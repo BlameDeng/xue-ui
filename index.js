@@ -5,6 +5,7 @@ import Switch from './src/form/switch/index.js'
 import Input from './src/form/input/index.js'
 import Cascader from './src/form/cascader/index.js'
 import DatePicker from './src/form/datepicker/index.js'
+import TimePicker from './src/form/timepicker/index.js'
 import Grid from './src/layout/grid/index.js'
 import Container from './src/layout/container/index.js'
 import Collapse from './src/layout/collapse/index.js'
@@ -32,6 +33,7 @@ const components = [
   Grid,
   Container,
   DatePicker,
+  TimePicker,
   Collapse,
   Waterfall,
   Sticky,
@@ -45,7 +47,7 @@ const components = [
   Spin
 ]
 
-const install = (Vue, options) => {
+const install = Vue => {
   components.forEach(component => {
     component.install(Vue)
   })

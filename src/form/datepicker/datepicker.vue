@@ -119,9 +119,15 @@
     import xSpread from '../../others/spread/spread.vue'
     export default {
         name: 'xDatePicker',
-        mixins: [],
         components: { xIcon, xSpread },
-        props: { defaultValue: String },
+        props: {
+            defaultValue: {
+                type: String,
+                validator(val) {
+                    return !isNaN(Date.parse(val))
+                }
+            }
+        },
         data() {
             return {
                 value: '',
@@ -175,10 +181,7 @@
                     this.showList('dateListVisible')
                     //picker展开时，如果value能转化为日期，则设置数据
                     if (!isNaN(Date.parse(this.value))) {
-                        let time = new Date(this.value)
-                        this.year = time.getFullYear()
-                        this.month = time.getMonth() + 1
-                        this.date = time.getDate()
+                        this.setDate(this.value)
                     }
                 } else {
                     document.removeEventListener('click', this.listenDocument)
@@ -201,15 +204,12 @@
         },
         created() {
             if (!isNaN(Date.parse(this.defaultValue))) {
-                let time = new Date(this.defaultValue)
-                let year = time.getFullYear()
-                let month = time.getMonth() + 1
-                let date = time.getDate()
-                this.setValue(year, month, date)
+                this.setValue(this.defaultValue)
+                this.setDate(this.defaultValue)
+            } else {
+                this.setDate()
             }
-            this.initDate()
         },
-        mounted() {},
         beforeDestroy() {
             document.removeEventListener('click', this.listenDocument)
         },
@@ -218,29 +218,36 @@
             change(e) {
                 let value = e.target.value
                 if (!isNaN(Date.parse(value))) {
-                    let time = new Date(value)
-                    let year = time.getFullYear()
-                    let month = time.getMonth() + 1
-                    let date = time.getDate()
-                    this.setValue(year, month, date)
+                    this.setValue(value)
                 }
             },
-            initDate() {
-                const today = new Date()
-                this.year = today.getFullYear()
-                this.month = today.getMonth() + 1
-                this.date = today.getDate()
+            setDate(str) {
+                if (str) {
+                    let time = new Date(str)
+                    this.year = time.getFullYear()
+                    this.month = time.getMonth() + 1
+                    this.date = time.getDate()
+                } else {
+                    const today = new Date()
+                    this.year = today.getFullYear()
+                    this.month = today.getMonth() + 1
+                    this.date = today.getDate()
+                }
             },
             onClickToday() {
-                this.initDate()
+                this.setDate()
                 this.setValue()
                 this.pickerVisible = false
             },
-            setValue(year, month, date) {
-                if (year && month && date) {
-                    let tempMonth = month > 9 ? month : `0${month}`
-                    let tempDate = date > 9 ? date : `0${date}`
-                    this.value = `${year}-${tempMonth}-${tempDate}`
+            setValue(str) {
+                if (str) {
+                    let time = new Date(str)
+                    let year = time.getFullYear()
+                    let month = time.getMonth() + 1
+                    let date = time.getDate()
+                    month = month > 9 ? month : `0${month}`
+                    date = date > 9 ? date : `0${date}`
+                    this.value = `${year}-${month}-${date}`
                 } else {
                     let tempMonth = this.month > 9 ? this.month : `0${this.month}`
                     let tempDate = this.date > 9 ? this.date : `0${this.date}`
@@ -249,11 +256,11 @@
             },
             listenDocument(e) {
                 if (!this.$refs.picker.contains(e.target)) {
-                    //点击别处关闭且无value，将数据完全初始化
+                    //点击别处关闭且无value，将数据初始化
                     if (!this.value) {
                         this.yearAreaBase = 0
                         this.century = 0
-                        this.initDate()
+                        this.setDate(this.defaultValue)
                     }
                     this.pickerVisible = false
                 }
@@ -274,6 +281,7 @@
                 })
             },
             handleDoubleNext(payload) {
+                //不同显示状态下，双箭头修改不同值
                 if (this.yearListVisible) {
                     this.yearAreaBase += payload * 10
                 } else if (this.dateListVisible) {
@@ -318,7 +326,7 @@
                 }
             },
             setYearAreaBase(str) {
-                const pattern = /([\d]{4})/
+                const pattern = /(-?\d+)-/
                 let num = 0
                 if (pattern.test(str)) {
                     num = +RegExp.$1

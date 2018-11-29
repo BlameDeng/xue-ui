@@ -67,6 +67,7 @@
         height: 32px;
         position: relative;
         color: rgba(0, 0, 0, .65);
+        font-size: 14px;
         >.icon {
             width: 20px;
             height: 20px;
