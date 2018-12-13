@@ -3,6 +3,7 @@ import Button from './src/basic/button/index.js'
 import Group from './src/basic/group/index.js'
 import Switch from './src/form/switch/index.js'
 import Input from './src/form/input/index.js'
+import Radio from './src/form/radio/index.js'
 import Cascader from './src/form/cascader/index.js'
 import DatePicker from './src/form/datepicker/index.js'
 import TimePicker from './src/form/timepicker/index.js'
@@ -29,6 +30,7 @@ const components = [
   Group,
   Switch,
   Input,
+  Radio,
   Cascader,
   Grid,
   Container,

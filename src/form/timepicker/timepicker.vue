@@ -17,9 +17,9 @@
                             <li v-for="(n,index) in 24" :key="n" @click=" handleClick(index,'hour')" :class="{selected:hour===index}">{{index>9?index:'0'+index}}</li>
                         </ul>
                     </div>
-                    <div class="item" ref="minitue">
-                        <ul class="minitue">
-                            <li v-for="(n,index) in 60" :key="n" @click=" handleClick(index,'minitue')" :class="{selected:minitue===index}">{{index>9?index:'0'+index}}</li>
+                    <div class="item" ref="minute">
+                        <ul class="minute">
+                            <li v-for="(n,index) in 60" :key="n" @click=" handleClick(index,'minute')" :class="{selected:minute===index}">{{index>9?index:'0'+index}}</li>
                         </ul>
                     </div>
                     <div class="item" ref="second">
@@ -46,9 +46,9 @@
                     const pattern = /^([\d]{2}):([\d]{2}):([\d]{2})$/
                     if (pattern.test(val)) {
                         let hour = +RegExp.$1
-                        let minitue = +RegExp.$2
+                        let minute = +RegExp.$2
                         let second = +RegExp.$3
-                        return hour >= 0 && hour <= 23 && minitue >= 0 && minitue <= 59 && second >= 0 && second <= 59
+                        return hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59 && second >= 0 && second <= 59
                     }
                     return false
                 }
@@ -59,15 +59,15 @@
                 pickerHolderVisible: true,
                 pickerVisible: false,
                 hour: -1,
-                minitue: -1,
+                minute: -1,
                 second: -1,
                 timerId: null
             }
         },
         computed: {
             value() {
-                if (this.hour >= 0 && this.minitue >= 0 && this.second >= 0) {
-                    return `${this.hour>9?this.hour:'0'+this.hour}:${this.minitue>9?this.minitue:'0'+this.minitue}:${this.second>9?this.second:'0'+this.second}`
+                if (this.hour >= 0 && this.minute >= 0 && this.second >= 0) {
+                    return `${this.hour>9?this.hour:'0'+this.hour}:${this.minute>9?this.minute:'0'+this.minute}:${this.second>9?this.second:'0'+this.second}`
                 } else {
                     return ''
                 }
@@ -78,7 +78,7 @@
                 if (val) {
                     document.addEventListener('click', this.listenDocument)
                     if (!this.value) {
-                        ['hour', 'minitue', 'second'].forEach(key => {
+                        ['hour', 'minute', 'second'].forEach(key => {
                             this.$nextTick(() => {
                                 this.$refs[key].scrollTop = 0
                             })
@@ -88,10 +88,10 @@
                         const pattern = /^([\d]{2}):([\d]{2}):([\d]{2})$/
                         if (pattern.test(this.defaultValue)) {
                             this.hour = +RegExp.$1
-                            this.minitue = +RegExp.$2
+                            this.minute = +RegExp.$2
                             this.second = +RegExp.$3
                             this.$nextTick(() => {
-                                ['hour', 'minitue', 'second'].forEach(key => {
+                                ['hour', 'minute', 'second'].forEach(key => {
                                     this.$refs[key].scrollTop = this[key] * 32
                                 })
                             })
@@ -107,9 +107,9 @@
                 }
 
             },
-            minitue(val) {
+            minute(val) {
                 if (val >= 0) {
-                    this.scroll('minitue', val * 32)
+                    this.scroll('minute', val * 32)
                 }
 
             },
@@ -128,10 +128,10 @@
                 const pattern = /^([\d]{2}):([\d]{2}):([\d]{2})$/
                 if (pattern.test(this.defaultValue)) {
                     this.hour = +RegExp.$1
-                    this.minitue = +RegExp.$2
+                    this.minute = +RegExp.$2
                     this.second = +RegExp.$3
                     this.$nextTick(() => {
-                        ['hour', 'minitue', 'second'].forEach(key => {
+                        ['hour', 'minute', 'second'].forEach(key => {
                             this.$refs[key].scrollTop = this[key] * 32
                         })
                     })
@@ -148,7 +148,7 @@
                     //点击别处关闭且无value，将数据初始化
                     if (!this.value) {
                         this.hour = -1
-                        this.minitue = -1
+                        this.minute = -1
                         this.second = -1
                     }
                     this.pickerVisible = false
@@ -159,11 +159,11 @@
             },
             clearValue() {
                 this.hour = -1
-                this.minitue = -1
+                this.minute = -1
                 this.second = -1
             },
             handleClick(index, key) {
-                ['hour', 'minitue', 'second'].forEach(item => {
+                ['hour', 'minute', 'second'].forEach(item => {
                     if (item === key) {
                         this[key] = index
                     } else {
@@ -177,11 +177,11 @@
                 const pattern = /^([\d]{2}):([\d]{2}):([\d]{2})$/
                 if (pattern.test(val)) {
                     let hour = +RegExp.$1
-                    let minitue = +RegExp.$2
+                    let minute = +RegExp.$2
                     let second = +RegExp.$3
-                    if (hour >= 0 && hour <= 23 && minitue >= 0 && minitue <= 59 && second >= 0 && second <= 59) {
+                    if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59 && second >= 0 && second <= 59) {
                         this.hour = hour
-                        this.minitue = minitue
+                        this.minute = minute
                         this.second = second
                     } else {
                         e.target.value = this.value
