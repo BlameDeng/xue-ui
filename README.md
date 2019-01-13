@@ -5,6 +5,7 @@
 > 本组件库仅供学习交流，请勿在生产环境中使用
 
 [官方文档](https://xue-ui.com.cn)
+[React 实现](https://github.com/BlameDeng/xue-react)
 
 ## 安装
 
@@ -32,6 +33,7 @@ new Vue({
   render: h => h(App)
 })
 ```
+
 以上代码便完成了 Xue-ui 的引入。需要注意的是，样式文件需要单独引入。
 
 ## 特别提醒

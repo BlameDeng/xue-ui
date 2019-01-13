@@ -1,7 +1,7 @@
 <template>
     <div class="x-cascader-item">
-        <div class="item-wrapper">
-            <div v-if="source.children" v-for="item in source.children" :key="item.value" class="x-item">
+        <div class="item-wrapper" v-if="source.children&&source.children.length">
+            <div v-for="item in source.children" :key="item.value" class="x-item">
                 <div @click="onClick(item)" class="x-label" :class="{active:selected.indexOf(item.label)>-1}">
                     <span>{{item.label}}</span>
                     <x-icon name="right" class="x-icon" v-if="item.children"></x-icon>
